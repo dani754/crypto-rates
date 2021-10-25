@@ -1,13 +1,12 @@
 import React from 'react';
-import './App.css';
-import Table from './Table';
+import CurrentTable from './CurrentTable';
 
 function History(props) {
     return (
         <div>
             <h1>{props.coin}</h1>
 
-            <Table />
+            <CurrentTable />
         </div>
     );
 }

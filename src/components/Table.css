@@ -1,0 +1,18 @@
+table {
+    background-color: azure;
+    border-color:  #1F2374;
+    border-radius: 10%;
+    padding: 0.5em;
+    border: 3px solid;
+    margin: 1em;
+}
+
+th, td {
+    padding: 1em;
+    border: 2px solid;
+    border-radius: 20%;
+    border-color: #1F2374;
+    color:  #1F2374;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
