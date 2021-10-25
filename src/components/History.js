@@ -1,5 +1,6 @@
 import React from 'react';
 import HistoryTable from './HistoryTable';
+import AdjustTable from './AdjustTable';
 import url from './server';
 import {arrangeToTable} from './DateTime';
 import './Page.css';
@@ -45,7 +46,7 @@ export default class History extends React.Component {
         return (
             <div className="Body" >
                 <button className="BigButton" onClick={()=>this.props.switch('current')} >Back To Live Rates</button>
-                
+            <AdjustTable />
                 <HistoryTable prices ={this.state.prices} dates={this.state.dates} times={this.state.times} />
             </div>
         );
