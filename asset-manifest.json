@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/dani754/crypto-rates/static/css/main.5282b5fb.chunk.css",
+    "main.js": "/dani754/crypto-rates/static/js/main.f52322c3.chunk.js",
+    "main.js.map": "/dani754/crypto-rates/static/js/main.f52322c3.chunk.js.map",
+    "runtime-main.js": "/dani754/crypto-rates/static/js/runtime-main.c3690ae8.js",
+    "runtime-main.js.map": "/dani754/crypto-rates/static/js/runtime-main.c3690ae8.js.map",
+    "static/js/2.1b4ed5e4.chunk.js": "/dani754/crypto-rates/static/js/2.1b4ed5e4.chunk.js",
+    "static/js/2.1b4ed5e4.chunk.js.map": "/dani754/crypto-rates/static/js/2.1b4ed5e4.chunk.js.map",
+    "index.html": "/dani754/crypto-rates/index.html",
+    "static/css/main.5282b5fb.chunk.css.map": "/dani754/crypto-rates/static/css/main.5282b5fb.chunk.css.map",
+    "static/js/2.1b4ed5e4.chunk.js.LICENSE.txt": "/dani754/crypto-rates/static/js/2.1b4ed5e4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c3690ae8.js",
+    "static/js/2.1b4ed5e4.chunk.js",
+    "static/css/main.5282b5fb.chunk.css",
+    "static/js/main.f52322c3.chunk.js"
+  ]
+}
