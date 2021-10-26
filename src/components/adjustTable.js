@@ -15,11 +15,13 @@ export default class  AdjustTable extends React.Component  {
         }
     }
 
+    //adjusting the date format for backend fetching
     handleDateToParent = (date) => {
         let ddmmyy = dateParseForRouting(new Date(date));
         return ddmmyy;
     }
 
+    //updating state for form input
     handleChange = (e) => {
         const target = e.target;
         const value = target.value;
@@ -29,6 +31,7 @@ export default class  AdjustTable extends React.Component  {
         });
     }
 
+    //deliver new data request to parent (History)
     handleSubmit = (event) => {
         let parsedStart = this.handleDateToParent(this.state.start);
         let parsedEnd = this.handleDateToParent(this.state.end);
@@ -37,7 +40,7 @@ export default class  AdjustTable extends React.Component  {
     }
 
     render(){
-
+        //initial state translate to input format
         if (this.state.start ===  ''){
             let defaultStart = parsedDateToInputFormat(this.props.start);
             let defaultEnd = parsedDateToInputFormat(this.props.end);
@@ -46,21 +49,32 @@ export default class  AdjustTable extends React.Component  {
                 end: defaultEnd,
             });
         }
-        console.log(this.state, this.props);
 
         return (
             <form onSubmit={this.handleSubmit} >
+
                 <label for="coin" >Coin:</label>
-                <select name="coin" value={this.state.coin} onChange={this.handleChange}>
+                <select name="coin"
+                        value={this.state.coin}
+                        onChange={this.handleChange}>
                     <option value="BTC">Bitcoin</option>
                     <option value="ETH">Ethereum</option>
                     <option value="LTC">Litecoin</option>
                 </select>
+
                 <label for="start" >From:</label>
-                    <input name="start" type="date" value={this.state.start} onChange={this.handleChange} />
+                    <input name="start"
+                            type="date"
+                            value={this.state.start}
+                            onChange={this.handleChange} />
+                
                 <label for="end" >Until:</label>
-                    <input name="end" type="date"  value={this.state.end} onChange={this.handleChange}  />
-                <button >OK</button>
+                    <input name="end"
+                            type="date"
+                            value={this.state.end}
+                            onChange={this.handleChange}  />
+
+                <button>OK</button>
             </form>
         );
     }

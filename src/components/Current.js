@@ -14,6 +14,7 @@ export default class Current extends React.Component {
         }
     }
 
+    //fetch current data from backend
     getCurrentRates = () => {
         fetch(url, {
             method: "get",
@@ -23,16 +24,16 @@ export default class Current extends React.Component {
         .then( data => {
             console.log("data", data);
             let timePart = timeOnly(data.date);
-            let prices = priceArrayString([data.BTC, data.ETH, data.LTC]);
+            let prices = priceArrayString([data.BTC, data.ETH, data.LTC]); //string pricies with commas
             this.setState({
                 rates: prices,
                 time: timePart,
             })
-            console.log("rates", this.state.rates);
         }).catch( err => console.log(err));        
     }
     
     render() {
+        //initial state update
         if ( Array.isArray(this.state.rates) && this.state.rates.length === 0 )
             this.getCurrentRates();
             

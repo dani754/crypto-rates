@@ -5,7 +5,7 @@ import History from './components/History';
 
 function App() {
 
-  const [page, togglePage] = useState('current');
+  const [page, togglePage] = useState('current');// default homepage - current rates
 
   let content = <Current switch={(coin)=>togglePage(coin)} />;
   if (page !== 'current'){
