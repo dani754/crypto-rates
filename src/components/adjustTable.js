@@ -1,32 +1,68 @@
 import React from 'react';
 import './Table.css';
+import {dateParseForRouting, parsedDateToInputFormat} from './DateTime';
 
-function AdjustTable(props) {
+export default class  AdjustTable extends React.Component  {
+    constructor(props){
+        super(props);
+        this.state = {
+            coin: 'BTC',
+            start: '',
+            end: '',
+            dates: [],
+            times: [],
+            prices: [],
+        }
+    }
 
-    let dates = <p></p>;
-    let intervals = <p></p>;
+    handleDateToParent = (date) => {
+        let ddmmyy = dateParseForRouting(new Date(date));
+        return ddmmyy;
+    }
 
-    return (
-        <form >
-            <label for="coin" >Coin:</label>
-            <select name="coin">
-                <option value="BTC">Bitcoin</option>
-                <option value="ETH">Ethereum</option>
-                <option value="LTC">Litecoin</option>
-            </select>
-            <label for="start" >Period:</label>
-            <select name="start">
-                <option value="today">Today</option>
-                <option value="week">A week</option>
-                <option value="month">A Month</option>
-                <option value="3months">3 Months</option>
-                <option value="year">A Year</option>
-                <option value="all">Costum dates</option>
-            </select>
-            {dates}
-            {intervals}
-        </form>
-    );
+    handleChange = (e) => {
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleSubmit = (event) => {
+        let parsedStart = this.handleDateToParent(this.state.start);
+        let parsedEnd = this.handleDateToParent(this.state.end);
+        this.props.onUpdate(this.state.coin, parsedStart, parsedEnd);
+        event.preventDefault();
+    }
+
+    render(){
+
+        if (this.state.start ===  ''){
+            let defaultStart = parsedDateToInputFormat(this.props.start);
+            let defaultEnd = parsedDateToInputFormat(this.props.end);
+            this.setState({
+                start: defaultStart,
+                end: defaultEnd,
+            });
+        }
+        console.log(this.state, this.props);
+
+        return (
+            <form onSubmit={this.handleSubmit} >
+                <label for="coin" >Coin:</label>
+                <select name="coin" value={this.state.coin} onChange={this.handleChange}>
+                    <option value="BTC">Bitcoin</option>
+                    <option value="ETH">Ethereum</option>
+                    <option value="LTC">Litecoin</option>
+                </select>
+                <label for="start" >From:</label>
+                    <input name="start" type="date" value={this.state.start} onChange={this.handleChange} />
+                <label for="end" >Until:</label>
+                    <input name="end" type="date"  value={this.state.end} onChange={this.handleChange}  />
+                <button >OK</button>
+            </form>
+        );
+    }
 }
 
-export default AdjustTable;

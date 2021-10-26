@@ -5,11 +5,16 @@ export function timeOnly(dateISO){
     return time;
 }
 
-export function priceString(ratesArray){
+export function priceArrayString(ratesArray){
     let pricesArray = ratesArray.map ( rate => {
-        let price = rate.toString();
-        let dot = price.indexOf('.');
-        console.log("dot", dot, price);
+        return priceString(rate);
+    });
+    return pricesArray;
+}
+
+export function priceString(rate){
+    let price = String(rate);
+    let dot = price.indexOf('.');
         if (dot === -1 && price.length > 3){
             let substr = price.substring(price.length-3);
             price = price.replace(substr, ','+substr);
@@ -18,10 +23,7 @@ export function priceString(ratesArray){
             let substr = price.substring(dot-3);
             price = price.replace(substr, ','+substr);
         }
-        console.log("price", price);
-        return price;
-    });
-    return pricesArray;
+    return price;
 }
 
 export function arrangeToTable(dataArray, coin) {
@@ -34,29 +36,40 @@ export function arrangeToTable(dataArray, coin) {
     datesAndPricesArrays.dates = dataArray.map( row => {
         let date = row.date;
         return (
-            date.substring(0, 10)
+            date
         );
     });
-    console.log("date arrange", datesAndPricesArrays);
     datesAndPricesArrays.times = dataArray.map( row => {
         let time = timeOnly(row.date);
         return time;
     });
-    console.log("time arrange", datesAndPricesArrays);
     datesAndPricesArrays.prices = dataArray.map( row => {
         switch(coin){
-            case 'eth':
+            case 'ETH':
                 return row.ETH;
-            case 'ltc':
+            case 'LTC':
                 return row.LTC;
             default:
                 return row.BTC;
         }
     });
-    console.log("rates arrange", datesAndPricesArrays);
-
     datesAndPricesArrays.prices = priceString(datesAndPricesArrays.prices);
-    console.log("price arrange", datesAndPricesArrays);
-
     return datesAndPricesArrays;
+}
+
+export function dateParseForRouting(date){
+    console.log("date to parse", date);
+    let dd = String(date.getDate()).padStart(2, '0');
+    let mm = String(date.getMonth() + 1).padStart(2, '0');
+    let yy = String(date.getFullYear()).substring(2);
+    let dateParse = dd + mm + yy;
+    console.log("date after parse", dateParse);
+    return dateParse;
+}
+
+export function parsedDateToInputFormat(ddmmyy){
+    console.log("ddmmyy", ddmmyy);
+    let date = "20" + String(ddmmyy.substring(4)) + "-" + ddmmyy.substring(2,4) + "-" + ddmmyy.substring(0,2);
+    console.log("date to input", date);
+    return date;
 }

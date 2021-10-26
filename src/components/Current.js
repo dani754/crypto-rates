@@ -1,7 +1,7 @@
 import React from 'react';
 import CurrentTable from './CurrentTable';
 import url from './server';
-import {timeOnly, priceString} from './DateTime';
+import {timeOnly, priceArrayString} from './DateTime';
 import './Page.css';
 
 export default class Current extends React.Component {
@@ -23,7 +23,7 @@ export default class Current extends React.Component {
         .then( data => {
             console.log("data", data);
             let timePart = timeOnly(data.date);
-            let prices = priceString([data.BTC, data.ETH, data.LTC]);
+            let prices = priceArrayString([data.BTC, data.ETH, data.LTC]);
             this.setState({
                 rates: prices,
                 time: timePart,
